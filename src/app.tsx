@@ -1,17 +1,16 @@
-import './app.css'
-import SearchBar from "./components/SearchBar";
-import { useState } from "preact/hooks";
-import SearchList from "./components/SearchList";
+import './assets/app.css'
+import { Route, Switch } from "wouter";
+import { Search } from './pages/Search';
+import Footer from './components/Footer';
 
 export function App() {
-  const [keywords, setKeywords] = useState('')
-  
   return (
-    <>
-      <div className="md:container md:mx-auto">
-        <SearchBar setKeywords={setKeywords} />
-        <SearchList keywords={keywords} />
-      </div >
-    </>
+    <div className="md:container md:mx-auto flex flex-col">
+      <Switch>
+        <Route path="/search/:keyword/:page?" component={Search} />
+        <Route path="" component={Search} />
+      </Switch>
+      <Footer />
+    </div>
   )
 }

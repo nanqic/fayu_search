@@ -1,9 +1,13 @@
 import { useState } from "preact/hooks";
 import { SearchItem, Subtitle } from "../reuests";
+import { useParams } from "wouter";
+import Highlight from "./Highlight";
 
 export default function Card({ title, subtitles, videoUrl }: SearchItem & { videoUrl: string }) {
     const subtitleList: Subtitle[] = JSON.parse(subtitles)
     const [load, setLoad] = useState(false)
+    const { keyword } = useParams();
+
 
     return (
         <div className="card bg-base-100 shadow-xl mb-3">
@@ -12,13 +16,13 @@ export default function Card({ title, subtitles, videoUrl }: SearchItem & { vide
                 {(load ? subtitleList : subtitleList.slice(0, 5)).map(sub => {
                     return <div>
                         <a className="link link-info text-xs mr-1 select-none" title={`第{sub.lineId}行`}
-                        href={`${videoUrl}#t=${sub.startTime}`}
-                        target='_blank'
+                            href={`${videoUrl}#t=${sub.startTime}`}
+                            target='_blank'
                         >{sub.startTime.split('.')[0]}</a>
-                        <p className={`inline-block`}> {sub.text}</p>
+                        <Highlight search={keyword} text={sub.text} />
                     </div>
                 })}
-                {!load && subtitles.length > 5 && <button className={'btn btn-sm'} onClick={() => setLoad(true)}>加载其余{subtitles.length - 5}行</button>}
+                {!load && subtitleList.length > 5 && <button className={'btn btn-sm'} onClick={() => setLoad(true)}>加载其余{subtitleList.length - 5}行</button>}
             </div>
         </div>
     )
