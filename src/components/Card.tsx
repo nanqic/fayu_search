@@ -8,19 +8,16 @@ export default function Card({ title, subtitles, videoUrl }: SearchItem & { vide
     const [load, setLoad] = useState(false)
     const { keyword } = useParams();
 
-
     return (
         <div className="card bg-base-100 shadow-xl mb-3">
             <div className="card-body gap-1 p-4 hover:bg-gray-50">
                 <a href={`${videoUrl}`} className="card-title text-lg hover:text-info">{title}</a >
                 {(load ? subtitleList : subtitleList.slice(0, 5)).map(sub => {
                     return <div>
-                        <a className="link font-thin text-blue-500 text-xs mr-1 select-none no-underline hover:border-b-2 border-blue-400" title={`第${sub.lineId}行`}
+                        <a className="link text-blue-400 text-xs mr-1 select-none no-underline hover:border-b-2 border-blue-400" title={`第${sub.lineId}行`}
                             href={`${videoUrl}#t=${sub.startTime}`}
                             target='_blank'
-                        >[{sub.startTime.startsWith('00') ?
-                            sub.startTime.slice(3).split('.')[0] :
-                            sub.startTime.split('.')[0]}]
+                        >[{sub.startTime.replace(new RegExp("^0(0:)?"), '').split('.')[0]}]
                             <Highlight search={keyword} text={sub.text} />
                         </a>
                     </div>
