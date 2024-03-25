@@ -4,6 +4,7 @@
 
 .btn {
     @apply hover:text-white !important;
+    @apply hover:bg-blue-400 !important;
 }
 
 .body-min-height {
