@@ -8,11 +8,13 @@ const Highlight = ({ search, text }: HighlightProps) => {
         return <>{text}</>;
     }
 
-    const parts = text.split(new RegExp(`(${search})`, 'gi'));
+    const searchList = search.split(' ')
+    const parts = text.split(new RegExp(`(${searchList.join('|')})`, 'g'));
+
     return (
-        <span>
+        <span className="text-base text-slate-700 ml-1">
             {parts.map((part, i) =>
-                part.toLowerCase() === search.toLowerCase() ? (
+                searchList.includes(part) ? (
                     <mark key={i}>{part}</mark>
                 ) : (
                     part

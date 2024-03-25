@@ -16,5 +16,5 @@ export default function Pagination({ total, pageSize, page, fetchData }: Pagi & 
         );
     }
 
-    return <div className="join">{pages}</div>;
+    return <div className="join flex-wrap">{pages}</div>;
 }

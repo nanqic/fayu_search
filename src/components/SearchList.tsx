@@ -16,8 +16,12 @@ export default function SearchList({ keywords }: propsType) {
         if (keywords) {
             setWait(true)
             const res = await searchRequst(keywords, page)
-            res.total > 0 && setResult(res)
+            res.total > 0 ? setResult(res) :
+                setResult(undefined)
+
             setWait(false)
+        } else {
+            setResult(undefined)
         }
     }
     useEffect(() => {
@@ -26,6 +30,7 @@ export default function SearchList({ keywords }: propsType) {
 
     return (
         <div className={'body-min-height mb-4'}>
+            {wait && <Skeleton />}
             {result ? result?.data.map((item: SearchItem, index) => {
                 return <Fragment key={index} >
                     <Card {...item} videoUrl={`${baseUrl}#${item.series}/${item.title}.mp4`} />
@@ -36,7 +41,6 @@ export default function SearchList({ keywords }: propsType) {
             {result && result?.total > result.pageSize &&
                 <Pagination {...result} fetchData={fetchData} />
             }
-            {wait && <Skeleton />}
         </div>
     )
 }

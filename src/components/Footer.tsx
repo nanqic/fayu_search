@@ -9,7 +9,7 @@ export default function Footer() {
                 <a target='_blank' href="https://a.hdcxb.net/login2">有声书</a>
             </nav>
             <aside className="items-center grid-flow-col">
-                <p>慧灯小组温哥华 ❤️ 发心制作 2024</p>
+                <p>慧灯小组温哥华 ❤️ 发心制作 {new Date().getFullYear()}</p>
             </aside>
         </footer>
     )
