@@ -10,6 +10,7 @@ export default function SearchBar({ setKeywords }: propsType) {
     const [_, setLocation] = useLocation();
     const { keyword } = useParams();
     const [value, setValue] = useState(keyword || '')
+    const BASE_PATH = import.meta.env.VITE_BASE_PATH
 
     const handleChange = (e: any) => {
         const { value } = e.target
@@ -20,13 +21,13 @@ export default function SearchBar({ setKeywords }: propsType) {
         let filterdValue = value.trim().replace(/[,，\/]/, ' ')
         if (filterdValue.length > 0) {
             setKeywords(filterdValue)
-            setLocation(`/search/${value}`)
+            setLocation(`${BASE_PATH}/search/${value}`)
         }
     }
 
     return (
         <div className={'sm:w-1/2 my-4 mx-2 sm:mx-auto flex'}>
-            <Link href="/" class="text-xl inline-flex items-center mr-1" onClick={()=>setKeywords('')}>🏠</Link>
+            <Link href={`${BASE_PATH}`} class="text-xl inline-flex items-center mr-1" onClick={() => setKeywords('')}>🏠</Link>
             <label className="inline-flex input input-bordered items-center gap-2 w-full mr-1">
                 <img src={searchIcon} alt="search icon" />
                 <input type="search" className="grow" placeholder="搜索法语。点击搜索到的文字跳转到视频"

@@ -4,11 +4,12 @@ import { Search } from './pages/Search';
 import Footer from './components/Footer';
 
 export function App() {
+  const BASE_PATH = import.meta.env.VITE_BASE_PATH
   return (
     <div className="md:container md:mx-auto flex flex-col">
       <Switch>
-        <Route path="/search/:keyword/:page?" component={Search} />
-        <Route path="" component={Search} />
+        <Route path={`${BASE_PATH}/search/:keyword/:page?`} component={Search} />
+        <Route path={`${BASE_PATH}`} component={Search} />
       </Switch>
       <Footer />
     </div>
