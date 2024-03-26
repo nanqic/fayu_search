@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 export function App() {
   const BASE_PATH = import.meta.env.VITE_BASE_PATH
   return (
-    <div className="md:container md:mx-auto flex flex-col">
+    <div className="max-w-screen-md md:mx-auto flex flex-col">
       <Switch>
         <Route path={`${BASE_PATH}/search/:keyword/:page?`} component={Search} />
         {/* <Route path={`${BASE_PATH}`} component={Search} /> */}

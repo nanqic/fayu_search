@@ -29,7 +29,7 @@ export default function SearchList({ keywords }: propsType) {
     }, [keywords])
 
     return (
-        <div className={'body-min-height mb-4 container'}>
+        <div className={'body-min-height mb-4'}>
             {wait && <Skeleton />}
             {result?.total &&
                 <p className={`text-xl px-3`}>搜索到{result.total}个视频</p>

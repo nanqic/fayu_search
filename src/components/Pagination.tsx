@@ -9,7 +9,7 @@ export default function Pagination({ total, pageSize, page, fetchData }: Pagi & 
             <button
                 key={i}
                 onClick={() => fetchData(i)}
-                className={`mx-0.5 join-item btn ${i === page ? 'btn-active' : ''}`}
+                className={`m-0.5 join-item btn ${i === page ? 'btn-active' : ''}`}
             >
                 {i}
             </button>

@@ -26,7 +26,7 @@ export default function SearchBar({ setKeywords }: propsType) {
     }
 
     return (
-        <div className={'sm:w-1/2 my-4 mx-2 sm:mx-auto flex'}>
+        <div className={'sm:w-2/3 my-4 mx-2 flex'}>
             <Link href={`${BASE_PATH || '/'}`} class="text-xl inline-flex items-center mr-1" onClick={() => setKeywords('')}>🏠</Link>
             <label className="inline-flex input input-bordered items-center gap-2 w-full mr-1">
                 <img src={searchIcon} alt="search icon" />
