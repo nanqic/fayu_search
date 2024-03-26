@@ -31,10 +31,12 @@ export default function SearchList({ keywords }: propsType) {
     return (
         <div className={'body-min-height mb-4'}>
             {wait && <Skeleton />}
+            {result?.total &&
+                <p className={`text-xl`}>搜索到{result.total}个视频</p>
+            }
             {result ? result?.data.map((item: SearchItem, index) => {
                 return <Fragment key={index} >
                     <Card {...item} videoUrl={`${baseUrl}#${item.series}/${item.title}.mp4`} />
-
                 </Fragment>
             }) : keywords && !wait && <p className={'text-center'}>没有符合搜索条件的结果</p>
             }

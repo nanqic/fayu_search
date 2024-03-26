@@ -30,7 +30,7 @@ export default function SearchBar({ setKeywords }: propsType) {
             <Link href={`${BASE_PATH || '/'}`} class="text-xl inline-flex items-center mr-1" onClick={() => setKeywords('')}>🏠</Link>
             <label className="inline-flex input input-bordered items-center gap-2 w-full mr-1">
                 <img src={searchIcon} alt="search icon" />
-                <input type="search" className="grow" placeholder="搜索法语。点击搜索到的文字跳转到视频"
+                <input type="search" className="grow" placeholder="搜索法语，多个关键字空格隔开"
                     value={value} onChange={handleChange}
                     onKeyUp={e => {
                         if (e.key == 'Enter')
