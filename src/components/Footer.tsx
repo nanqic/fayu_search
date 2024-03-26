@@ -8,7 +8,7 @@ export default function Footer() {
                 <a target='_blank' href="https://a.hdcxb.net/login2">有声书</a>
             </nav>
             <aside>
-                <p>慧灯小组温哥华 ❤️ 发心制作 {new Date().getFullYear()}</p>
+                <p><a target='_blank' href="https://www.huidengvan.com/">慧灯小组温哥华</a>  ❤️ 发心制作 {new Date().getFullYear()}</p>
             </aside>
         </footer>
     )
