@@ -11,5 +11,8 @@ export default ({ mode }: { mode: string }) => defineConfig({
     // visualizer({ open: true }),
   ],
   assetsInclude: ['**/*.svg'],
-  base: loadEnv(mode, cwd()).VITE_BASE_PATH || '/'
+  base: loadEnv(mode, cwd()).VITE_BASE_PATH || '/',
+  server: {
+    host: '0.0.0.0'
+  }
 })

@@ -29,10 +29,10 @@ export default function SearchList({ keywords }: propsType) {
     }, [keywords])
 
     return (
-        <div className={'body-min-height mb-4'}>
+        <div className={'body-min-height mb-4 container'}>
             {wait && <Skeleton />}
             {result?.total &&
-                <p className={`text-xl`}>搜索到{result.total}个视频</p>
+                <p className={`text-xl px-3`}>搜索到{result.total}个视频</p>
             }
             {result ? result?.data.map((item: SearchItem, index) => {
                 return <Fragment key={index} >

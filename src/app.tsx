@@ -9,7 +9,8 @@ export function App() {
     <div className="md:container md:mx-auto flex flex-col">
       <Switch>
         <Route path={`${BASE_PATH}/search/:keyword/:page?`} component={Search} />
-        <Route path={`${BASE_PATH}`} component={Search} />
+        {/* <Route path={`${BASE_PATH}`} component={Search} /> */}
+        <Route path={`*`} component={Search} />
       </Switch>
       <Footer />
     </div>

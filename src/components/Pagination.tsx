@@ -9,12 +9,12 @@ export default function Pagination({ total, pageSize, page, fetchData }: Pagi & 
             <button
                 key={i}
                 onClick={() => fetchData(i)}
-                className={`join-item btn ${i === page ? 'btn-active' : ''}`}
+                className={`mx-0.5 join-item btn ${i === page ? 'btn-active' : ''}`}
             >
                 {i}
             </button>
         );
     }
 
-    return <div className="join flex-wrap">{pages}</div>;
+    return <div className="join flex-wrap px-2">{pages}</div>;
 }

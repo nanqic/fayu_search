@@ -9,9 +9,9 @@ export default function Card({ title, subtitles, videoUrl }: SearchItem & { vide
     const { keyword } = useParams();
 
     return (
-        <div className="card bg-base-100 shadow-xl mb-3">
-            <div className="card-body gap-1 p-4 hover:bg-gray-100">
-                <a href={`${videoUrl}`} className="card-title text-lg hover:text-info">{title}</a >
+        <div className="card bg-base-100 shadow-xl m-2 px-3 pb-1">
+            <a href={`${videoUrl}`} className="card-title text-lg hover:text-info">{title}</a >
+            <div className="card-body gap-1 p-1 hover:bg-gray-100">
                 {(load ? subtitleList : subtitleList.slice(0, 5)).map(sub => {
                     return <div>
                         <a className="link text-blue-400 text-xs mr-1 select-none no-underline hover:border-b-2 border-blue-400" title={`第${sub.lineId}行`}
