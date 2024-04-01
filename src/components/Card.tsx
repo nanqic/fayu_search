@@ -15,7 +15,7 @@ export default function Card({ title, subtitles, videoUrl }: SearchItem & { vide
                 {(load ? subtitleList : subtitleList.slice(0, 5)).map(sub => {
                     return <div>
                         <a className="link text-blue-400 text-xs mr-1 select-none no-underline hover:border-b-2 border-blue-400" title={`第${sub.lineId}行`}
-                            href={`${videoUrl}#t=${sub.startTime}`}
+                            href={`${videoUrl}#t=${(sub.startTime.slice(0, -4))}`}
                             target='_blank'
                         >[{sub.startTime.replace(new RegExp("^0(0:)?"), '').split('.')[0]}]
                             <Highlight search={keyword} text={sub.text} />
