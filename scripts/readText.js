@@ -1,10 +1,4 @@
-import { loadDict } from '@node-rs/jieba';
-import { cutForSearch } from '@node-rs/jieba';
 import { appendFileSync, readFileSync, readdirSync, writeFileSync } from 'fs';
-
-const stopwords = new Set(readFileSync('./stopwords.txt', 'utf-8').split('\n'))
-stopwords.add('\n')
-// loadDict(readFileSync('./stopwords.txt'))
 
 const parseSRT = (data) => {
     const subtitlesArray = [];
@@ -14,37 +8,36 @@ const parseSRT = (data) => {
         const lineId = parts[0];
         const time = parts[1].split(' --> ');
         const text = parts.slice(2).join(' ');
-        let words = new Set(cutForSearch(text))
-        const filteredWords = [...words].filter(word => !stopwords.has(word)).join('/');
 
-        subtitlesArray.push({ lineId, startTime: time[0].replace(',', '.'), text, words: filteredWords });
+
+        subtitlesArray.push({ lineId, startTime: time[0].replace(',', '.'), text, words: '' });
     });
     return subtitlesArray;
 };
 
-function buildSql(filePath, index = 100) {
+export function buildSql(filePath, Idindex = 100) {
     let baseSql = `INSERT INTO fayuContent (VideoId, LineId, StartTime, Text, Words) VALUES\n`;
     let sql = baseSql;
     const subtitles = parseSRT(readFileSync(filePath, 'utf-8'))
 
     subtitles.forEach((item, lineIndex) => {
         const { lineId, startTime, text, words } = item;
-        sql += `(${index}, ${lineId}, '${startTime}', '${text}', '${words}'),\n`;
-        // 每900行或在最后一行时分割和保存SQL
-        if ((lineIndex + 1) % 900 === 0 || lineIndex === subtitles.length - 1) {
+        sql += `(${Idindex}, ${lineId}, '${startTime}', '${text}', '${words}'),\n`;
+        // 每1000行或在最后一行时分割和保存SQL
+        if ((lineIndex + 1) % 1000 === 0 || lineIndex === subtitles.length - 1) {
             sql = sql.slice(0, -2) + ';'; // 移除最后的逗号并结束SQL语句
             // 写入分割的SQL文件
-            writeSQLFile(filePath, sql, Math.ceil(lineIndex / 900));
+            writeSQLFile(filePath, sql, Math.ceil(lineIndex / 1000));
             sql = baseSql; // 重置SQL以开始新的语句
         }
     });
 
-    try {
-        appendFileSync(`./${filePath.split('/')[1]}/titles.sql`, `INSERT INTO fayuTitle VALUES (${index}, '${filePath.split('/').pop().slice(0, -4)}', 'unknown', '第一册');\n`);
-        console.log('title文件写入成功');
-    } catch (err) {
-        console.error('写入title文件时出错:', err);
-    }
+    // try {
+    //     appendFileSync(`./${filePath.split('/')[1]}/titles.sql`, `INSERT INTO fayuTitle VALUES (${index}, '${filePath.split('/').pop().slice(0, -4)}', 'unknown', '第一册');\n`);
+    //     console.log('title文件写入成功');
+    // } catch (err) {
+    //     console.error('写入title文件时出错:', err);
+    // }
 }
 
 function writeSQLFile(filePath, sqlContent, part) {
