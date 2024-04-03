@@ -11,7 +11,6 @@ interface propsType {
 export default function SearchList({ keywords }: propsType) {
     const [result, setResult] = useState<Result | undefined>()
     const [wait, setWait] = useState(false)
-    let baseUrl = import.meta.env.VITE_VIDEO_URL
     const fetchData = async (page = 1) => {
         keywords = keywords?.replace(/[,，]/g, ' ').trim()
         if (keywords) {
@@ -36,9 +35,7 @@ export default function SearchList({ keywords }: propsType) {
                 <p className={`text-xl px-3`}>搜索到{result.total}个视频</p>
             }
             {!wait && result ? result?.data.map((item: SearchItem, index) => {
-                return <Fragment key={index} >
-                    <Card {...item} videoUrl={`${baseUrl}#${item.series}/${item.title}.mp4`} />
-                </Fragment>
+                return <Fragment key={index} ><Card {...item} /></Fragment>
             }) : keywords && !wait && <p className={'text-center'}>没有符合搜索条件的结果</p>
             }
             {result && result?.total > result.pageSize &&

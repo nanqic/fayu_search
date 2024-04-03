@@ -3,14 +3,15 @@ import { SearchItem, Subtitle } from "../reuests";
 import { useParams } from "wouter";
 import Highlight from "./Highlight";
 
-export default function Card({ title, subtitles, videoUrl }: SearchItem & { videoUrl: string }) {
+export default function Card({ title, series, subtitles }: SearchItem) {
     const subtitleList: Subtitle[] = JSON.parse(subtitles)
     const [load, setLoad] = useState(false)
     const { keyword } = useParams();
+    let videoUrl = `${import.meta.env.VITE_VIDEO_URL}#${series}/${title}.mp4`
 
     return (
         <div className="card bg-base-100 shadow-xl m-2 px-3 pb-1">
-            <a href={`${videoUrl}`} className="card-title text-lg hover:text-blue-400">{title}</a >
+            <a href={`${videoUrl}`} className="card-title text-lg hover:text-blue-400" target='_blank'>{title}</a >
             <div className="card-body gap-1 p-1 hover:bg-gray-100">
                 {(load ? subtitleList : subtitleList.slice(0, 5)).map(sub => {
                     return <div>
