@@ -1,3 +1,3 @@
 [submodule "fayu-worker"]
     path = fayu-worker
-    url = https://github.com/nanqic/fayu-worker.git
+    url = https://github.com/nanqic/fayu-worker
