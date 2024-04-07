@@ -12,7 +12,7 @@ const Highlight = ({ search, text }: HighlightProps) => {
     const parts = text.split(new RegExp(`(${searchList.join('|')})`, 'g'));
 
     return (
-        <span className="text-base text-slate-700 ml-1">
+        <span className="text-base ml-1">
             {parts.map((part, i) =>
                 searchList.includes(part) ? (
                     <mark key={i}>{part}</mark>

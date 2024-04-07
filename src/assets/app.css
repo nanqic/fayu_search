@@ -8,7 +8,7 @@
 }
 
 .body-min-height {
-    min-height: calc(100vh - 10rem);
+    min-height: calc(100vh - 12rem);
 
     @media screen and (orientation: portrait) {
         min-height: calc(100vh - 15rem);
